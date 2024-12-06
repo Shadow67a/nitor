@@ -1,0 +1,44 @@
+struct mainWindow() : Window {
+
+	int red = 0;
+
+	content() {
+
+		Rectangle()
+			.scale(600, 200);
+			.color(red, 189, 176, 0);
+
+		if (system.time > 1800) {
+			red = 255;
+		};
+		
+	};
+};
+
+--------------------------------------------------------------
+			Behind the scenes;
+View views[];
+int viewsToUpdate;
+
+
+rectangleShape* Rectangle()
+{
+	rectangleShape thisRectangle;
+	thisRectangleIndex = views.append(thisRectangle);
+
+	return &views[thisRectangleIndex];
+};
+
+int main()
+{
+	while (windowOpen)
+	{
+		while (viewsToUpdate.length != 0)
+		{
+			views[viewsToUpdate[0]].draw();
+			viewsToUpdate[0].remove();
+		};
+	};
+};
+
+--------------------------------------------------------------
